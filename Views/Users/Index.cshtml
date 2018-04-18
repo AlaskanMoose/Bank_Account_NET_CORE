@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  @using BankAccount.Models
+  @model BankAccount.Models.User
+  <div class="container">
+    <div>
+        @{  
+        if(ViewBag.Count == 2){
+            foreach(var error in ViewBag.Errors){
+                if(@error.Errors.Count > 0){
+                    <p>@error.Errors[0].ErrorMessage</p>
+                }
+            }
+        }
+        if(ViewBag.Count == 1){
+            <p>@ViewBag.Error</p>
+        } 
+        }
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-login">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-6">
+                <a class="active" href="/login" id="login-form-link">Login</a>
+              </div>
+              <div class="col-xs-6">
+                <a href="/register" id="register-form-link">Register</a>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <form asp-controller="Users" asp-action="Login" id="login-form" method="post" role="form" style="display: block;">
+                  <div class="form-group">
+                    <input asp-for="Email" class="form-control" id="Email"  placeholder="Email" tabindex="1" type="text" value="">
+                  </div>
+                  <div class="form-group">
+                    <input asp-for="Password" class="form-control" id="Password"  placeholder="Password" tabindex="2" type="password">
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input class="form-control btn btn-login" id="login-submit" tabindex="4" type="submit" value="Log In">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <form asp-controller="Users" asp-action="Register" id="register-form" method="post" role="form" style="display: none;">
+                  <div class="form-group">
+                    <input asp-for="FirstName" class="form-control" id="FirstName"  placeholder="First Name" tabindex="1" type="text" value="">
+                  </div>
+                  <div class="form-group">
+                    <input asp-for="LastName" class="form-control" id="LastName" placeholder="Last Name" tabindex="1" type="text" value="">
+                  </div>
+                  <div class="form-group">
+                    <input asp-for="Email" class="form-control" id="email" placeholder="Email Address" tabindex="1" type="email" value="">
+                  </div>
+                  <div class="form-group">
+                    <input asp-for="Password" class="form-control" id="password" placeholder="Password" tabindex="2" type="password">
+                  </div>
+                  <div class="form-group">
+                    <input asp-for="PasswordConfirmation" class="form-control" id="PasswordConfirmation" placeholder="Confirm Password" tabindex="2" type="password">
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-6 col-sm-offset-3">
+                        <input class="form-control btn btn-register" id="register-submit" name="register-submit" tabindex="4" type="submit" value="Register Now">
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

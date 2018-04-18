@@ -1,0 +1,42 @@
+@using BankAccount.Models
+@model BankAccount.Models.Account
+
+<div>
+    <div class="row">
+        <div class="eight columns">
+            <h2>Your Bank Account</h2>
+        </div>
+        <div class="three columns">
+            <h4>Welcome @ViewBag.CurrentUser.FirstName</h4>
+            <h4>Your Current Balance: @ViewBag.CurrentUser.Balance</h4>
+        </div>
+        <div class="one column">
+            <a href="/logout">log off</a>
+        </div>
+    </div>
+    <div class="row">
+        <form asp-action="Deposit" asp-controller="Accounts" method="POST">
+            <h5>Deposit/Withdraw</h5>
+            <input type="number" asp-for="Amount">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach(var account in @ViewBag.Accounts){
+              <tr>
+                <td>@account.Amount</td>
+                <td>@account.CreatedAt</td>
+              </tr> 
+            }     
+          </tbody>
+        </table>
+    </div>
+</div>
